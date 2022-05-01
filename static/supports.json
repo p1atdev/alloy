@@ -1,0 +1,28 @@
+{
+    "supported": [
+        {
+            "name": "Spotify",
+            "downloadURL": [
+                {
+                    "arch": "x86_64",
+                    "url": "https://download.scdn.co/Spotify.dmg"
+                },
+                {
+                    "arch": "arm64",
+                    "url": "https://download.scdn.co/SpotifyARM64.dmg"
+                }
+            ],
+            "appPath": "/Spotify.app"
+        },
+        {
+            "name": "Google Chrome",
+            "downloadURL": [
+                {
+                    "arch": "universal",
+                    "url": "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg"
+                }
+            ],
+            "appPath": "/Google Chrome.app"
+        }
+    ]
+}
