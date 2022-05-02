@@ -1,1 +1,1 @@
-export * as CMD from "./cmd.ts"
+export * as CMD from "./cmd.ts";

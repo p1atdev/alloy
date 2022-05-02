@@ -1,33 +1,58 @@
 export const bribe = async (path: string) => {
-    const p = Deno.run({
-        cmd: ["xattr", "-drs", "com.apple.quarantine", path],
-    })
+  const p = Deno.run({
+    cmd: ["xattr", "-drs", "com.apple.quarantine", path],
+  });
 
-    await p.status()
-    p.close()
+  await p.status();
+  p.close();
 
-    return path
-}
+  return path;
+};
 
 export const chmod = async (path: string, mode: number, inside: boolean) => {
-    const command = inside ? ["chmod", "-R", mode.toString(8), path] : ["chmod", mode.toString(8), path]
-    const p = Deno.run({
-        cmd: command,
-    })
+  const command = ["chmod"];
 
-    await p.status()
-    p.close()
+  if (inside) {
+    command.push("-R");
+  }
 
-    return path
-}
+  const args = [mode.toString(), path];
+
+  args.forEach((arg) => {
+    command.push(arg);
+  });
+
+  const p = Deno.run({
+    cmd: command,
+  });
+
+  await p.status();
+  p.close();
+
+  return path;
+};
 
 export const move = async (from: string, to: string) => {
-    const p = Deno.run({
-        cmd: ["mv", from, to],
-    })
+  const p = Deno.run({
+    cmd: ["mv", "-u", from, to],
+  });
 
-    await p.status()
-    p.close()
+  await p.status();
+  p.close();
 
-    return to
-}
+  return to;
+};
+
+export const rm = async (path: string) => {
+  const chmod = Deno.run({
+    cmd: ["chmod", "-R", "777", path],
+  });
+  await chmod.status();
+  chmod.close();
+
+  const rm = Deno.run({
+    cmd: ["rm", "-rf", path],
+  });
+  await rm.status();
+  rm.close();
+};

@@ -1,32 +1,32 @@
-import { getSupportedApplications, download, Seven, File } from "../utils/mod.ts"
-import { assertExists } from "../deps.ts"
+import { File, getSupportedApplications, Net, Seven } from "../utils/mod.ts";
+import { assertExists } from "../deps.ts";
 
 Deno.test("check 7zip", () => {
-    const p = Deno.run({
-        cmd: [Deno.cwd() + "/res/bin/7zz", "--help"],
-        stdout: "null",
-        stderr: "null",
-    })
+  const p = Deno.run({
+    cmd: [Deno.cwd() + "/res/bin/7zz", "--help"],
+    stdout: "null",
+    stderr: "null",
+  });
 
-    assertExists(p.pid)
+  assertExists(p.pid);
 
-    p.close()
-})
+  p.close();
+});
 
 Deno.test("extract DMG", async () => {
-    const apps = getSupportedApplications()
-    const spotify = apps[0]
-    const spotifyURL = spotify.downloadURL.find((url) => url.arch === "x86_64")
+  const apps = getSupportedApplications();
+  const spotify = apps[0];
+  const spotifyURL = spotify.downloadURL.find((url) => url.arch === "x86_64");
 
-    assertExists(spotifyURL)
+  assertExists(spotifyURL);
 
-    const downloadedPath = await download(spotifyURL.url)
+  const downloadedPath = await Net.download(spotifyURL.url);
 
-    const output = await Seven.extractDMG(downloadedPath)
+  const output = await Seven.extractDMG(downloadedPath);
 
-    assertExists(output)
+  assertExists(output);
 
-    const appPath = await File.chmod(output + spotify.appPath, 777, true)
+  const appPath = await File.chmod(output + spotify.appPath, 777, true);
 
-    assertExists(appPath)
-})
+  assertExists(appPath);
+});

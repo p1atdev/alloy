@@ -20,6 +20,11 @@ scripts:
     cmd: deno cache --unstable ./deps.ts
   test:
     cmd: deno test -A --unstable
+  clean:
+    cmd: deno run ./clean.ts
+    unstable: true
+    allow: 
+      - all
     
 
   fmt:
