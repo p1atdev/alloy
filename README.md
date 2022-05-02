@@ -1,14 +1,16 @@
 # Alloy - An application installer for restriced macOS
 
+> Note: This is in experimental stage. Please report any bugs.
+
 <h2 id="toc">TOC</h2>
--   <a href="#what-is-alloy">What is Alloy?</a>
--   <a href="#installation">Installation</a>
--   <a href="#usage">Usage</a>
-    -   <a href="#supported-applications">Supported applications</a>
-    -  <a href="#installing-applicatons">Installing applications</a>
-    -  <a href="#uninstalling-applicatons">Uninstalling applications</a>
--   <a href="#todo">TODO</a>
--   <a href="#contributing">Contributing</a>
+-   [What is Alloy](#What-is-Alloy)
+-   [Installation](#Installation)
+-   [Usage](#Usage)
+    -  [Supported applications](#Supported-applications)
+    -  [Installing applications](#Installing-applications)
+    -  [Uninstalling applications](#Uninstalling-applications)
+-   [TODO](#TODO)
+-   [Contributing](#Contributing)
 
 <h2 id="what-is-alloy">What is Alloy</h2>
 
