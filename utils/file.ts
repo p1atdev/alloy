@@ -34,7 +34,7 @@ export const chmod = async (path: string, mode: number, inside: boolean) => {
 
 export const move = async (from: string, to: string) => {
   const p = Deno.run({
-    cmd: ["mv", "-u", from, to],
+    cmd: ["mv", "-f", from, to],
   });
 
   await p.status();
