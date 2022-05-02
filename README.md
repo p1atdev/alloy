@@ -6,8 +6,8 @@
 -   [What is Alloy](#What-is-Alloy)
 -   [Installation](#Installation)
 -   [Usage](#Usage)
-    -  [Supported applications](#Supported-applications)
     -  [Installing applications](#Installing-applications)
+        -  [Supported applications](#Supported-applications)
     -  [Uninstalling applications](#Uninstalling-applications)
 -   [TODO](#TODO)
 -   [Contributing](#Contributing)
@@ -16,8 +16,44 @@
 
 ## Installation
 
+Requirements:
+- [Deno](https://deno.land/)
+
+To install Alloy:
+```bash
+deno install -fqAn alloy https://deno.land/x/alloy/main.ts
+```
+
+To uninstall Alloy:
+```bash
+deno uninstall alloy
+```
+
 ## Usage
-### Supported applications
+
+### Help
+    
+```bash
+alloy --help
+```
+
+```bash
+alloy -h
+```
+
+### Installing applications
+
+To install an application:
+```bash
+alloy install <app-name>
+```
+
+For example:
+```bash
+alloy install chrome
+```
+
+#### Supported applications
 
 - Spotify
 - Google Chrome
@@ -26,8 +62,6 @@
 - Keka (Not yet)
 - Visual Studio Code (Not yet)
 - Figma (Not yet)
-
-### Installing applications
 
 ### Uninstalling applications
 
