@@ -7,7 +7,7 @@ import {
   Net,
   Seven,
 } from "../utils/mod.ts";
-import { cliffy } from "../deps.ts";
+import { cliffy, Prompt } from "../deps.ts";
 
 const apps = getSupportedApplications();
 const installed = getInstalledApplications();
@@ -82,6 +82,35 @@ export const installApplication = async (appName: string) => {
   console.log(colors.green("Cleaned up."), "\n");
 
   console.log(colors.bold.green(`${app.name} installed successfully!`));
+};
+
+export const uninstallApplication = async (appName: string) => {
+  const app = apps.find((app) => app.argName === appName);
+  if (!app) {
+    console.error(colors.red(`Application ${appName} not found.`));
+    return;
+  }
+
+  const installedApp = installed.find((app) => app.name === app.name);
+  if (!installedApp) {
+    console.error(colors.red(`Application ${appName} not installed.`));
+    return;
+  }
+
+  const confirmed = await Prompt.Confirm.prompt("Are you sure?");
+
+  if (!confirmed) {
+    console.log(colors.red("Aborted."));
+    return;
+  }
+
+  console.log(colors.blue(`Uninstalling ${app.name}...`));
+
+  await File.rm(applicationsPath + "/" + app.name + ".app");
+
+  console.log(colors.green(`${app.name} has been uninstalled.`), "\n");
+
+  return;
 };
 
 export const listApplications = () => {

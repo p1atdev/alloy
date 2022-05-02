@@ -28,6 +28,15 @@ await new cliffy.Command()
   })
   .command("uninstall", "Uninstall an application.")
   .arguments("<app>")
+  .action((_options, ...args) => {
+    const appName = args[0];
+    if (!appName) {
+      console.error("No application specified.");
+      console.error("Use --help for more information.");
+      return;
+    }
+    CMD.uninstallApplication(appName);
+  })
   .command("list", "List all applications.")
   .action(() => {
     CMD.listApplications();
