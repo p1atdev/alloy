@@ -2,6 +2,7 @@
     "supported": [
         {
             "name": "Spotify",
+            "displayName": "spotify",
             "downloadURL": [
                 {
                     "arch": "x86_64",
@@ -16,6 +17,7 @@
         },
         {
             "name": "Google Chrome",
+            "displayName": "chrome",
             "downloadURL": [
                 {
                     "arch": "universal",

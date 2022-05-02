@@ -4,6 +4,8 @@ import { assertExists } from "../deps.ts"
 Deno.test("check 7zip", () => {
     const p = Deno.run({
         cmd: [Deno.cwd() + "/res/bin/7zz", "--help"],
+        stdout: "null",
+        stderr: "null",
     })
 
     assertExists(p.pid)
@@ -24,9 +26,7 @@ Deno.test("extract DMG", async () => {
 
     assertExists(output)
 
-    const bribedPath = await File.bribe(output + spotify.appPath)
+    const appPath = await File.chmod(output + spotify.appPath, 777, true)
 
-    console.log(bribedPath)
-
-    assertExists(bribedPath)
+    assertExists(appPath)
 })

@@ -1,14 +1,42 @@
-import { getSupportedApplications, download, Seven } from "./utils/mod.ts"
+import {} from "./utils/mod.ts"
+import { CMD } from "./models/mod.ts"
+import { cliffy } from "./deps.ts"
 
-const apps = getSupportedApplications()
-const spotifyURL = apps[0].downloadURL.find((url) => url.arch === "x86_64")
+await new cliffy.Command()
+    .name("alloy")
+    .version("v0.0.1")
+    .description("Alloy is a tool for managing your macOS applications.")
+    .arguments("<command>")
 
-if (!spotifyURL) {
-    throw new Error("No supported application found")
-}
+    .command("install", "Install an application.")
+    .option("-l, --list", "List all available applications.")
+    .arguments("[app]")
+    .action((options, ...args) => {
+        if (options.list) {
+            CMD.listApplications()
+        }
+    })
 
-const downloadedPath = await download(spotifyURL.url)
+    .command("uninstall", "Uninstall an application.")
+    .arguments("<app>")
 
-const output = await Seven.extractDMG(downloadedPath)
+    .command("list", "List all applications.")
+    .action(() => {
+        CMD.listApplications()
+    })
 
-console.log(output)
+    .command("update", "Update an application.")
+    .arguments("<app>")
+    .option("-a, --all", "Update all installed applications.")
+
+    .command("update-self", "Update this application.")
+
+    .command("undmg", "Extract a DMG file.")
+    .arguments("<dmg>")
+    .option("-o, --output <path>", "Output path.")
+
+    .command("bribe", "Remove quarantine from an application.")
+
+    .command("grant", "Grant permissions to run an application.")
+
+    .parse(Deno.args)

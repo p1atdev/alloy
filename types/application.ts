@@ -1,8 +1,12 @@
 export type Application = {
     /**
-     * The name of the application.
+     * The name of the application (e.g. "Google Chrome")
      */
     name: string
+    /**
+     * The display name of the application (e.g. "chrome").
+     */
+    displayName: string
     /**
      * The download URL of the application.
      */

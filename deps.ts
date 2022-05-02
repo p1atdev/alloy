@@ -8,3 +8,6 @@ export * from "https://deno.land/std@0.137.0/testing/asserts.ts"
 
 // stream
 export * from "https://deno.land/std@0.137.0/streams/conversion.ts"
+
+// cli
+export * as cliffy from "https://deno.land/x/cliffy@v0.23.2/mod.ts"

@@ -7,8 +7,10 @@ envFile:
 
 scripts:
   start: 
-    cmd: deno run ./server.ts
+    cmd: deno run ./main.ts
     unstable: true
+    allow: 
+      - all
   dev:
     cmd: deno run ./server.ts
     watch: true
