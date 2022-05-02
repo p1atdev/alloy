@@ -8,6 +8,7 @@ import {
   Seven,
 } from "../utils/mod.ts";
 import { cliffy, Prompt } from "../deps.ts";
+import { Application } from "../types/application.ts";
 
 const apps = getSupportedApplications();
 const installed = getInstalledApplications();
@@ -21,70 +22,7 @@ export const installApplication = async (appName: string) => {
     return;
   }
 
-  const downloadURL = (() => {
-    const universal = app.downloadURL.find((url) => url.arch === "universal");
-
-    if (universal) {
-      return universal.url;
-    }
-
-    const arch = detectArch();
-
-    const url = app.downloadURL.find((url) => url.arch === arch);
-
-    if (url) {
-      return url.url;
-    }
-
-    console.error(
-      colors.red(`No download URL for ${appName} for ${arch} architecture.`),
-    );
-    return;
-  })();
-
-  if (!downloadURL) {
-    return;
-  }
-
-  console.log(colors.green(`Application ${app.name} found!`));
-
-  console.log(colors.blue(`Installing ${app.name}...`));
-
-  const downloadedPath = await Net.download(downloadURL);
-
-  console.log("Downloaded to:", downloadedPath);
-
-  console.log(colors.blue(`Extracting ${app.name}...`));
-
-  const output = await Seven.extractDMG(
-    downloadedPath,
-    await Deno.makeTempDir({ prefix: "alloy_output_" }),
-  );
-
-  console.log("Extracted to:", output);
-
-  console.log(colors.blue(`Granting permissions ${app.name}...`));
-
-  const appPath = await File.chmod(output + app.appPath, 777, true);
-
-  console.log("Permissions granted to:", appPath);
-
-  const movedPath = await File.move(
-    appPath,
-    applicationsPath + "/" + app.name + ".app",
-  );
-
-  console.log(
-    colors.green(`${app.name} has been installed to ${movedPath}`),
-  );
-
-  console.log(colors.blue("Cleaning up..."));
-
-  await File.rm(downloadedPath);
-
-  console.log(colors.green("Cleaned up."), "\n");
-
-  console.log(colors.bold.green(`${app.name} installed successfully!`));
+  await install(app);
 };
 
 export const uninstallApplication = async (appName: string) => {
@@ -138,6 +76,27 @@ export const listApplications = () => {
   table.render();
 };
 
+export const updateSelf = async () => {
+  // TODO: check the version of the current binary and update if necessary
+
+  console.log(colors.blue("Updating alloy..."));
+
+  const deno = Deno.run({
+    cmd: [
+      Deno.execPath(),
+      "-qAn",
+      "alloy",
+      "https://deno.land/x/alloy/main.ts",
+    ],
+  });
+
+  await deno.status();
+  deno.close();
+
+  console.log(colors.bold.green("Alloy has been updated."));
+  return;
+};
+
 export const undmg = async (path: string, to?: string) => {
   if (to) {
     console.log(colors.blue(`Ouput path specified: ${to}`));
@@ -152,4 +111,84 @@ export const undmg = async (path: string, to?: string) => {
   console.log(colors.green("Extraction complete."));
 
   return;
+};
+
+export const bribe = async (path: string) => {
+  console.log(colors.blue(`Bribing ${path}...`));
+
+  try {
+    await File.bribe(path);
+
+    console.log(colors.green("Bribe successful."), "\n");
+  } catch (error) {
+    console.debug(error);
+    console.error(colors.red("Bribe failed."), "\n");
+  }
+};
+
+const install = async (app: Application) => {
+  const downloadURL = (() => {
+    const universal = app.downloadURL.find((url) => url.arch === "universal");
+
+    if (universal) {
+      return universal.url;
+    }
+
+    const arch = detectArch();
+
+    const url = app.downloadURL.find((url) => url.arch === arch);
+
+    if (url) {
+      return url.url;
+    }
+
+    console.error(
+      colors.red(`No download URL for ${app.name} for ${arch} architecture.`),
+    );
+    return;
+  })();
+
+  if (!downloadURL) {
+    return;
+  }
+
+  console.log(colors.green(`Application ${app.name} found!`));
+
+  console.log(colors.blue(`Installing ${app.name}...`));
+
+  const downloadedPath = await Net.download(downloadURL);
+
+  console.log("Downloaded to:", downloadedPath);
+
+  console.log(colors.blue(`Extracting ${app.name}...`));
+
+  const output = await Seven.extractDMG(
+    downloadedPath,
+    await Deno.makeTempDir({ prefix: "alloy_output_" }),
+  );
+
+  console.log("Extracted to:", output);
+
+  console.log(colors.blue(`Granting permissions ${app.name}...`));
+
+  const appPath = await File.chmod(output + app.appPath, 777, true);
+
+  console.log("Permissions granted to:", appPath);
+
+  const movedPath = await File.move(
+    appPath,
+    applicationsPath + "/" + app.name + ".app",
+  );
+
+  console.log(
+    colors.green(`${app.name} has been installed to ${movedPath}`),
+  );
+
+  console.log(colors.blue("Cleaning up..."));
+
+  await File.rm(downloadedPath);
+
+  console.log(colors.green("Cleaned up."), "\n");
+
+  console.log(colors.bold.green(`${app.name} installed successfully!`));
 };
