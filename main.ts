@@ -1,5 +1,14 @@
-import { add } from "./utils/mod.ts";
+import { getSupportedApplications, download, Seven } from "./utils/mod.ts"
 
-export const calculate = (a: number, b: number): number => {
-  return add(a * 10, b);
-};
+const apps = getSupportedApplications()
+const spotifyURL = apps[0].downloadURL.find((url) => url.arch === "x86_64")
+
+if (!spotifyURL) {
+    throw new Error("No supported application found")
+}
+
+const downloadedPath = await download(spotifyURL.url)
+
+const output = await Seven.extractDMG(downloadedPath)
+
+console.log(output)

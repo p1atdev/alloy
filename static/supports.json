@@ -12,7 +12,7 @@
                     "url": "https://download.scdn.co/SpotifyARM64.dmg"
                 }
             ],
-            "appPath": "/Spotify.app"
+            "appPath": "/Spotify/Spotify.app"
         },
         {
             "name": "Google Chrome",
@@ -22,7 +22,7 @@
                     "url": "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg"
                 }
             ],
-            "appPath": "/Google Chrome.app"
+            "appPath": "/Google Chrome/Google Chrome.app"
         }
     ]
 }
