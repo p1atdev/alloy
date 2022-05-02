@@ -84,7 +84,7 @@ export const updateSelf = async () => {
   const deno = Deno.run({
     cmd: [
       Deno.execPath(),
-      "-qAn",
+      "-fqAn",
       "alloy",
       "https://deno.land/x/alloy/main.ts",
     ],

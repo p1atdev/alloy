@@ -44,6 +44,10 @@ await new cliffy.Command()
   .command("update", "Update an application.")
   .arguments("<app>")
   .option("-a, --all", "Update all installed applications.")
+  .action((_options, ..._args) => {
+    // TODO: Implement update command.
+    console.log("Under construction...");
+  })
   .command("update-self", "Update this application.")
   .action((_options, ..._args) => {
     CMD.updateSelf();

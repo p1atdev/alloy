@@ -25,6 +25,9 @@ scripts:
     unstable: true
     allow: 
       - all
+  
+  install:
+    cmd: deno install -fqAn alloy --unstable ./main.ts
     
 
   fmt:
