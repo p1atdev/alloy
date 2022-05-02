@@ -56,7 +56,10 @@ export const installApplication = async (appName: string) => {
 
   console.log(colors.blue(`Extracting ${app.name}...`));
 
-  const output = await Seven.extractDMG(downloadedPath);
+  const output = await Seven.extractDMG(
+    downloadedPath,
+    await Deno.makeTempDir({ prefix: "alloy_output_" }),
+  );
 
   console.log("Extracted to:", output);
 
@@ -133,4 +136,20 @@ export const listApplications = () => {
   });
 
   table.render();
+};
+
+export const undmg = async (path: string, to?: string) => {
+  if (to) {
+    console.log(colors.blue(`Ouput path specified: ${to}`));
+  }
+
+  console.log(colors.blue(`Extracting ${path}...`));
+
+  const output = await Seven.extractDMG(path, to);
+
+  console.log("Extracted to:", output);
+
+  console.log(colors.green("Extraction complete."));
+
+  return;
 };

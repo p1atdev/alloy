@@ -48,6 +48,17 @@ await new cliffy.Command()
   .command("undmg", "Extract a DMG file.")
   .arguments("<dmg>")
   .option("-o, --output <path>", "Output path.")
+  .action((options, ...args) => {
+    if (!args[0]) {
+      console.error("No DMG file specified.");
+      console.error("Use --help for more information.");
+      return;
+    }
+
+    const output = options.output;
+
+    CMD.undmg(args[0], output);
+  })
   .command("bribe", "Remove quarantine from an application.")
   .command("grant", "Grant permissions to run an application.")
   .parse(Deno.args);

@@ -1,8 +1,14 @@
-export const extractDMG = async (dmg: string) => {
-  const outputPath = await Deno.makeTempDir({ prefix: "alloy_output_" });
+export const extractDMG = async (dmg: string, to?: string) => {
+  const outputPath = to;
+
+  const command = [Deno.cwd() + "/res/bin/7zz", "x", dmg];
+
+  if (outputPath) {
+    command.push("-o" + outputPath);
+  }
 
   const p = Deno.run({
-    cmd: [Deno.cwd() + "/res/bin/7zz", "x", dmg, "-o" + outputPath],
+    cmd: command,
     stdout: "null",
     stderr: "null",
   });
