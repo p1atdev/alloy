@@ -25,6 +25,28 @@
         }
       ],
       "appPath": "/Google Chrome/Google Chrome.app"
+    },
+    {
+      "name": "Firefox",
+      "argName": "firefox",
+      "downloadURL": [
+        {
+          "arch": "universal",
+          "url": "https://download-installer.cdn.mozilla.net/pub/firefox/releases/99.0/mac/ja-JP-mac/Firefox%2099.0.dmg"
+        }
+      ],
+      "appPath": "/Firefox/Firefox.app"
+    },
+    {
+      "name": "Keka",
+      "argName": "keka",
+      "downloadURL": [
+        {
+          "arch": "universal",
+          "url": "https://d.keka.io/"
+        }
+      ],
+      "appPath": "/Keka/Keka.app"
     }
   ]
 }

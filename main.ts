@@ -1,9 +1,10 @@
 import { CMD } from "./models/mod.ts";
 import { cliffy } from "./deps.ts";
+import { ALLOY_VERSION } from "./utils/mod.ts";
 
 await new cliffy.Command()
   .name("alloy")
-  .version("v0.0.5")
+  .version(ALLOY_VERSION)
   .description("Alloy is a tool for managing your macOS applications.")
   .arguments("<command>")
   .command("install", "Install an application.")
@@ -63,7 +64,7 @@ await new cliffy.Command()
 
     const output = options.output;
 
-    CMD.undmg(args[0], output);
+    CMD.undmg(args.join("\ "), output);
   })
   .command("bribe", "Remove quarantine from an application.")
   .arguments("<path>")

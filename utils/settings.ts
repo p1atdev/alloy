@@ -1,4 +1,9 @@
 /**
+ * Alloy version
+ */
+export const ALLOY_VERSION = "v0.0.6";
+
+/**
  * The settings for the application.
  */
 export const ALLOY_PATH = Deno.env.get("ALLOY_PATH") ??

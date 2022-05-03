@@ -77,9 +77,9 @@ alloy install chrome
 
 - Spotify
 - Google Chrome
-- Firefox (Not yet)
+- Firefox
 - NextDNS (Not yet)
-- Keka (Not yet)
+- Keka
 - Visual Studio Code (Not yet)
 - Figma (Not yet)
 

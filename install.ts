@@ -1,8 +1,9 @@
 import { cliffy } from "./deps.ts";
+import { ALLOY_VERSION } from "./utils/mod.ts";
 
 const colors = cliffy.colors;
 
-console.log(colors.blue("Start to install alloy..."));
+console.log(colors.blue("Start installing Alloy..."));
 
 try {
   const p = Deno.run({
@@ -12,7 +13,7 @@ try {
       "-fqAn",
       "alloy",
       "--unstable",
-      "https://deno.land/x/alloy/main.ts",
+      `https://deno.land/x/alloy@${ALLOY_VERSION}/main.ts`,
     ],
     stdout: "piped",
   });
