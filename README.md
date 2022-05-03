@@ -33,7 +33,7 @@ Requirements:
 To install Alloy:
 
 ```bash
-deno run -A --unstable https://deno.land/x/alloy/install.ts
+deno run -A --unstable https://deno.land/x/alloy@v0.0.7/install.ts
 ```
 
 Tp update alloy:
