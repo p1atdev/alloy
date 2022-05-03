@@ -88,6 +88,7 @@ export const updateSelf = async () => {
     const deno = Deno.run({
       cmd: [
         Deno.execPath(),
+        "install",
         "-fqAn",
         "alloy",
         "--unstable",
