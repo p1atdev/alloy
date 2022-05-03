@@ -97,6 +97,22 @@ For example:
 alloy uninstall chrome
 ```
 
+### Undmg
+
+Undmg is a command line tool to extract DMG files.
+
+```bash
+alloy undmg <dmg-file>
+```
+
+### Bribe
+
+Bribe is a command line tool to bypass the macOS Gatekeeper.
+
+```bash
+alloy bribe <app-path>
+```
+
 ## TODO
 
 - [ ] Update installed applications command
