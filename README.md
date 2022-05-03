@@ -24,7 +24,7 @@ Requirements:
 To install Alloy:
 
 ```bash
-deno install -fqAn alloy --unstable https://deno.land/x/alloy/install.ts
+deno run -A --unstable https://deno.land/x/alloy/install.ts
 ```
 
 To uninstall Alloy:

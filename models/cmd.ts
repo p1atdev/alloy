@@ -84,20 +84,26 @@ export const updateSelf = async () => {
 
   console.log(colors.blue("Updating alloy..."));
 
-  const deno = Deno.run({
-    cmd: [
-      Deno.execPath(),
-      "-fqAn",
-      "alloy",
-      "https://deno.land/x/alloy/main.ts",
-    ],
-  });
+  try {
+    const deno = Deno.run({
+      cmd: [
+        Deno.execPath(),
+        "-fqAn",
+        "alloy",
+        "--unstable",
+        "https://deno.land/x/alloy/main.ts",
+      ],
+    });
 
-  await deno.status();
-  deno.close();
+    await deno.status();
+    deno.close();
 
-  console.log(colors.bold.green("Alloy has been updated."));
-  return;
+    console.log(colors.bold.green("Alloy has been updated."));
+    return;
+  } catch (error) {
+    console.log(colors.bold.red("Update failed."));
+    console.error(colors.red("Error: " + error.message));
+  }
 };
 
 export const undmg = async (path: string, to?: string) => {

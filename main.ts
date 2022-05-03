@@ -3,7 +3,7 @@ import { cliffy } from "./deps.ts";
 
 await new cliffy.Command()
   .name("alloy")
-  .version("v0.0.3")
+  .version("v0.0.4")
   .description("Alloy is a tool for managing your macOS applications.")
   .arguments("<command>")
   .command("install", "Install an application.")
