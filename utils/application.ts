@@ -1,7 +1,8 @@
 import { Application } from "../types/application.ts";
+import { ALLOY_APPLICATIONS_PATH } from "./settings.ts";
 
 export const applicationsPath = (() => {
-  const path = Deno.env.get("HOME") + "/Applications/Alloy";
+  const path = ALLOY_APPLICATIONS_PATH;
 
   try {
     Deno.readDirSync(path);
@@ -12,14 +13,12 @@ export const applicationsPath = (() => {
   return Deno.realPathSync(path);
 })();
 
-export const getSupportedApplications = (): Application[] => {
-  // read json
-  const json = Deno.readFileSync(Deno.cwd() + "/static/supports.json");
+// TODO: add type for json
+export const getSupportedApplications = async (): Promise<Application[]> => {
+  const json = await fetch("https://deno.land/x/alloy/static/supports.json")
+    .then((res) => res.json());
 
-  // parse json
-  const data = JSON.parse(new TextDecoder().decode(json));
-
-  return data.supported;
+  return json.supported;
 };
 
 export const getInstalledApplications = (): Application[] => {

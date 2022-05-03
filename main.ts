@@ -1,10 +1,9 @@
-import {} from "./utils/mod.ts";
 import { CMD } from "./models/mod.ts";
 import { cliffy } from "./deps.ts";
 
 await new cliffy.Command()
   .name("alloy")
-  .version("v0.0.1")
+  .version("v0.0.3")
   .description("Alloy is a tool for managing your macOS applications.")
   .arguments("<command>")
   .command("install", "Install an application.")

@@ -27,7 +27,12 @@ scripts:
       - all
   
   install:
-    cmd: deno install -fqAn alloy --unstable ./main.ts
+    cmd: deno run ./install.ts
+    allow: 
+      - all
+    unstable: true
+  uninstall:
+    cmd: deno uninstall alloy
     
 
   fmt:

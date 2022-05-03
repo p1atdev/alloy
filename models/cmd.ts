@@ -5,12 +5,15 @@ import {
   getInstalledApplications,
   getSupportedApplications,
   Net,
+  setupAlloyPath,
   Seven,
 } from "../utils/mod.ts";
 import { cliffy, Prompt } from "../deps.ts";
 import { Application } from "../types/application.ts";
 
-const apps = getSupportedApplications();
+setupAlloyPath();
+
+const apps = await getSupportedApplications();
 const installed = getInstalledApplications();
 
 const colors = cliffy.colors;
