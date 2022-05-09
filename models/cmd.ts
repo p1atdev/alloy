@@ -7,6 +7,7 @@ import {
   Net,
   setupAlloyPath,
   Seven,
+  ALLOY_VERSION
 } from "../utils/mod.ts";
 import { cliffy, Prompt } from "../deps.ts";
 import { Application } from "../types/application.ts";
@@ -80,7 +81,6 @@ export const listApplications = () => {
 };
 
 export const updateSelf = async () => {
-  // TODO: check the version of the current binary and update if necessary
 
   console.log(colors.blue("Updating alloy..."));
 
@@ -92,6 +92,11 @@ export const updateSelf = async () => {
   }
 
   const latestTag = location.replace("/x/alloy@", "");
+
+  if (latestTag <= ALLOY_VERSION) {
+    console.log(colors.green("Already up to date."));
+    return;
+  }
 
   try {
     const deno = Deno.run({
