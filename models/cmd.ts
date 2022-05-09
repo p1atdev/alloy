@@ -84,7 +84,9 @@ export const updateSelf = async () => {
 
   console.log(colors.blue("Updating alloy..."));
 
-  const location = await fetch("https://deno.land/x/alloy").then((res) => res.headers.get("location"));
+  const location = await fetch("https://deno.land/x/alloy").then((res) => {
+    return res.url
+  });
 
   if (!location) {
     console.error(colors.red("Could not find the latest version."));
