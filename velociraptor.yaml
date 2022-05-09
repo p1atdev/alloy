@@ -15,6 +15,8 @@ scripts:
     cmd: deno run ./server.ts
     watch: true
     unstable: true
+  build:
+    cmd: deno compile -A --unstable ./main.ts
 
   cache:
     cmd: deno cache --unstable ./deps.ts

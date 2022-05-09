@@ -1,5 +1,7 @@
 # Alloy - An application installer for restriced macOS
 
+[![vr scripts](https://badges.velociraptor.run/flat.svg)](https://velociraptor.run)
+
 > Note: This is in experimental stage. Please report any bugs.
 
 ## TOC
@@ -16,7 +18,8 @@
 
 ## What is Alloy
 
-Alloy is an application installer for restricted macOS. It is a simple command line tool that installs applications on macOS.
+Alloy is an application installer for restricted macOS. It is a simple command
+line tool that installs applications on macOS.
 
 ### Features
 
@@ -33,10 +36,11 @@ Requirements:
 To install Alloy:
 
 ```bash
-deno run -A --unstable https://deno.land/x/alloy@v0.0.7/install.ts
+deno run -A --unstable https://deno.land/x/alloy@v0.0.8/install.ts
 ```
 
 Tp update alloy:
+
 ```bash
 alloy update-self
 ```
@@ -82,6 +86,7 @@ alloy install chrome
 - Keka
 - Visual Studio Code (Not yet)
 - Figma (Not yet)
+- UTM (←NEW!!)
 
 ### Uninstalling applications
 
@@ -120,4 +125,3 @@ alloy bribe <app-path>
 - [ ] Add completion support
 
 ## Contributing
-

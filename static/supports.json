@@ -47,6 +47,17 @@
         }
       ],
       "appPath": "/Keka/Keka.app"
+    },
+    {
+      "name": "UTM",
+      "argName": "utm",
+      "downloadURL": [
+        {
+          "arch": "universal",
+          "url": "https://github.com/utmapp/UTM/releases/latest/download/UTM.dmg"
+        }
+      ],
+      "appPath": "/UTM/UTM.app"
     }
   ]
 }

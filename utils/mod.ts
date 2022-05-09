@@ -4,3 +4,4 @@ export * as Seven from "./7z.ts";
 export * as File from "./file.ts";
 export * from "./arch.ts";
 export * from "./settings.ts";
+export * from "./hash.ts";
