@@ -84,6 +84,15 @@ export const updateSelf = async () => {
 
   console.log(colors.blue("Updating alloy..."));
 
+  const location = await fetch("https://deno.land/x/alloy").then((res) => res.headers.get("location"));
+
+  if (!location) {
+    console.error(colors.red("Could not find the latest version."));
+    return;
+  }
+
+  const latestTag = location.replace("/x/alloy@", "");
+
   try {
     const deno = Deno.run({
       cmd: [
@@ -92,7 +101,7 @@ export const updateSelf = async () => {
         "-fqAn",
         "alloy",
         "--unstable",
-        "https://deno.land/x/alloy/main.ts",
+        `https://deno.land/x/alloy@${latestTag}/main.ts`,
       ],
     });
 
