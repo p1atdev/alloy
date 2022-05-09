@@ -36,7 +36,7 @@ Requirements:
 To install Alloy:
 
 ```bash
-deno run -A --unstable https://deno.land/x/alloy@v0.0.8/install.ts
+deno run -A --unstable https://deno.land/x/alloy@v0.0.9/install.ts
 ```
 
 Tp update alloy:
@@ -87,6 +87,7 @@ alloy install chrome
 - Visual Studio Code (Not yet)
 - Figma (Not yet)
 - UTM (←NEW!!)
+- Free Download Manager (←NEW!!)
 
 ### Uninstalling applications
 

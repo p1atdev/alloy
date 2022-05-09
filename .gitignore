@@ -229,3 +229,6 @@ $RECYCLE.BIN/
 
 # alloy
 alloy*
+
+# deno
+vendor

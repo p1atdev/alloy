@@ -58,6 +58,17 @@
         }
       ],
       "appPath": "/UTM/UTM.app"
+    },
+    {
+      "name": "Free Download Manager",
+      "argName": "fdm",
+      "downloadURL": [
+        {
+          "arch": "universal",
+          "url": "https://dn3.freedownloadmanager.org/6/latest/fdm.dmg"
+        }
+      ],
+      "appPath": "/FDM/Free Download Manager.app"
     }
   ]
 }

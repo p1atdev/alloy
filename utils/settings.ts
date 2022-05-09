@@ -1,7 +1,7 @@
 /**
  * Alloy version
  */
-export const ALLOY_VERSION = "v0.0.8";
+export const ALLOY_VERSION = "v0.0.9";
 
 /**
  * The settings for the application.
